@@ -105,7 +105,7 @@ $items_result = $items_stmt->get_result();
                         <p><strong>Mode de paiement:</strong> 
                             <?php echo $order['payment_method'] === 'cash_on_delivery' ? '💵 Paiement à la livraison' : '🏦 Virement bancaire'; ?>
                         </p>
-                        <?php if ($order['yalidine_tracking']): ?>
+                        <?php if ($order['ZR_tracking']): ?>
                             <p><strong>Suivi Yalidine:</strong> <?php echo sanitizeInput($order['yalidine_tracking']); ?></p>
                         <?php endif; ?>
                     </div>

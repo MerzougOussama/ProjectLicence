@@ -62,7 +62,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <header>
         <nav class="navbar">
             <div class="nav-container">
-                <h1 class="logo"><a href="index.php">📚 Library</a></h1>
+                <h1 class="logo"><a href="index.php">🖊IQRAA</a></h1>
                 <ul class="nav-menu">
                     <li><a href="index.php">Accueil</a></li>
                     <li><a href="products.php">Produits</a></li>

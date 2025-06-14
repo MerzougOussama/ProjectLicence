@@ -12,6 +12,7 @@ if (!isAcheteur()) {
 $error = '';
 $success = '';
 
+
 // Traitement de suppression d'un article du panier
 if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['remove_item'])) {
     $item_id = intval($_POST['item_id']);
@@ -109,7 +110,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['place_order'])) {
             $total_amount += $delivery_price;
             
             // Générer un numéro de commande
-            $order_number = generateOrderNumber();
+           $order_number = generateOrderNumber($conn);
+
             
             // Créer la commande
             $order_query = "INSERT INTO orders (user_id, order_number, total_amount, delivery_type, 

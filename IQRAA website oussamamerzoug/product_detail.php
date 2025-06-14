@@ -331,7 +331,7 @@ $similar_result = $similar_stmt->get_result();
                                 </form>
                                 
                                 <div class="purchase-info">
-                                    <small>💡 Ajoutez au panier puis finalisez votre commande avec livraison Yalidine</small>
+                                    <small>💡 Ajoutez au panier puis finalisez votre commande avec livraison Zrexpress</small>
                                 </div>
                             <?php endif; ?>
                         <?php elseif (!isLoggedIn()): ?>

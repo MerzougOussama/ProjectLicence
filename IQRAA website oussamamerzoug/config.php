@@ -46,9 +46,19 @@ function validateEmail($email) {
     return filter_var($email, FILTER_VALIDATE_EMAIL);
 }
 
-function generateOrderNumber() {
-    return 'CMD' . date('Ymd') . sprintf('%04d', rand(1000, 9999));
+function generateOrderNumber($conn) {
+    do {
+        $order_number = 'CMD' . rand(10000, 99999);
+        $check_query = "SELECT id FROM orders WHERE order_number = ?";
+        $stmt = $conn->prepare($check_query);
+        $stmt->bind_param("s", $order_number);
+        $stmt->execute();
+        $stmt->store_result();
+    } while ($stmt->num_rows > 0);
+
+    return $order_number;
 }
+
 
 // Fonction pour obtenir le nombre d'articles dans le panier
 function getCartCount() {

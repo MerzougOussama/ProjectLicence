@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : 127.0.0.1
--- Généré le : mar. 10 juin 2025 à 19:19
+-- Généré le : ven. 13 juin 2025 à 10:50
 -- Version du serveur : 10.4.32-MariaDB
 -- Version de PHP : 8.0.30
 
@@ -35,6 +35,13 @@ CREATE TABLE `cart_items` (
   `added_at` timestamp NOT NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 
+--
+-- Déchargement des données de la table `cart_items`
+--
+
+INSERT INTO `cart_items` (`id`, `user_id`, `product_id`, `quantity`, `added_at`) VALUES
+(0, 8, 22, 1, '2025-06-12 20:05:57');
+
 -- --------------------------------------------------------
 
 --
@@ -56,7 +63,7 @@ INSERT INTO `categories` (`id`, `name`, `description`) VALUES
 (2, 'LIVRES', 'Livres académiques et littéraires'),
 (3, ' PAPIERS', 'Fiches, cartons et papiers blancs'),
 (4, ' IMPRIMANTES', 'Imprimantes et accessoires dimpression'),
-(5, 'MOSHAFS QURAN', 'Qurans (Moushafs) avec les récitations Hafs et Warch , Rub Yassin\ Chapelet de glorification ....'),
+(5, 'MOSHAFS QURAN', 'Qurans (Moushafs) avec les récitations Hafs et Warch , Rub Yassin Chapelet de glorification ....'),
 (6, 'CAHIERS', 'Cahiers de coloriage, cahiers pour enfants, cahiers de dessin, cahiers multi-usages..');
 
 -- --------------------------------------------------------
@@ -83,13 +90,6 @@ CREATE TABLE `orders` (
   `updated_at` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 
---
--- Déchargement des données de la table `orders`
---
-
-INSERT INTO `orders` (`id`, `user_id`, `order_number`, `total_amount`, `delivery_type`, `delivery_address`, `delivery_phone`, `delivery_wilaya`, `delivery_commune`, `ZR_tracking`, `status`, `payment_method`, `notes`, `created_at`, `updated_at`) VALUES
-(9, 5, 'CMD20', 660.00, 'bureau', '502,rondpoint', '+213 66565642', '23', 'hadjar', NULL, 'delivered', 'cash_on_delivery', '', '2025-06-10 14:00:43', '2025-06-10 14:02:21');
-
 -- --------------------------------------------------------
 
 --
@@ -104,13 +104,6 @@ CREATE TABLE `order_items` (
   `unit_price` decimal(10,2) NOT NULL,
   `total_price` decimal(10,2) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
-
---
--- Déchargement des données de la table `order_items`
---
-
-INSERT INTO `order_items` (`id`, `order_id`, `product_id`, `quantity`, `unit_price`, `total_price`) VALUES
-(9, 9, 6, 1, 660.00, 660.00);
 
 -- --------------------------------------------------------
 
@@ -137,12 +130,24 @@ CREATE TABLE `products` (
 
 INSERT INTO `products` (`id`, `title`, `description`, `price`, `category_id`, `bibliothecaire_id`, `image_url`, `stock`, `status`, `created_at`) VALUES
 (5, 'اقلام هايلايتر طقم 4 الوان', 'طقم اقلام هايلايتر مظهر للكتابة والتوضيح 4 الوان', 290.00, 1, 4, 'https://media.zid.store/18bdc83c-a79a-4f53-be44-a9013fc6f13b/0cdba9ea-a98e-4272-8502-c5f4e13bf01e.jpg', 4, 'available', '2025-06-10 13:04:33'),
-(6, 'moshaf wrach almadina', 'Dimensions (L × l × H) : 10 × 14,5 × 1,8 cm\r\nNombre de pages : 640 pages\r\nÉpaisseur du papier : 20 g/m²\r\nPoids du livre : 300 g', 660.00, 5, 4, 'https://media.zid.store/thumbs/cdea19f6-b0f8-453a-91ed-a293ac37de30/a7c71767-acf4-4614-ba11-9c4c09fb18a0-thumbnail-1000x1000-70.jpeg', 2, 'available', '2025-06-10 13:37:04'),
+(6, 'moshaf wrach almadina', 'Dimensions (L × l × H) : 10 × 14,5 × 1,8 cm\r\nNombre de pages : 640 pages\r\nÉpaisseur du papier : 20 g/m²\r\nPoids du livre : 300 g', 660.00, 5, 4, 'https://media.zid.store/thumbs/cdea19f6-b0f8-453a-91ed-a293ac37de30/a7c71767-acf4-4614-ba11-9c4c09fb18a0-thumbnail-1000x1000-70.jpeg', 0, 'available', '2025-06-10 13:37:04'),
 (7, 'Imprimante Epson EcoTank L3211 ????️', 'Technologie : Jet d’encre EcoTank (réservoirs rechargeables)\r\n\r\nFonctions : Impression, copie, numérisation *(3-en-1)*\r\n\r\nVitesse d’impression :\r\n\r\nNoir : ~10 ppm | Couleur : ~5 ppm (pages par minute)\r\n\r\nRésolution : 5760 × 1440 dpi (qualité photo optimale)\r\n\r\nCapacité des réservoirs :\r\n\r\nNoir : ~70 ml | Couleurs : ~70 ml × 3 (cyan, magenta, jaune)\r\n\r\nConnectivité : USB 2.0 (sans Wi-Fi)\r\n\r\nPoids : 3,9 kg', 34000.00, 4, 4, 'https://media.zid.store/cdea19f6-b0f8-453a-91ed-a293ac37de30/5e3a5d5e-1437-476a-940a-064ea83a4f49.jpeg', 2, 'available', '2025-06-10 13:39:13'),
 (8, 'Gomme blanche grande taille', 'Grande gomme blanche (standard)\r\n\r\nGomme blanche format maxi (pour un style plus commercial)\r\n\r\nGomme blanche extra-large (version plus descriptive)', 25.00, 1, 4, 'https://media.zid.store/thumbs/18bdc83c-a79a-4f53-be44-a9013fc6f13b/a4bbb708-454f-4567-87ea-033fabc78d08-thumbnail-1000x1000-70.jpg', 19, 'available', '2025-06-10 13:41:12'),
 (9, 'TROUSSE', 'TROUSSE TRIPLE POCHES BLEU &quot;TECHNO&quot;', 480.00, 1, 4, 'https://technostationery.com/media/catalog/product/cache/0357bde545ff49ff327f5b2f4e2532a3/t/r/trousse-triple-poches-bleu-techno-ref-6868.jpg', 5, 'available', '2025-06-10 14:04:18'),
 (10, 'ALBUM DESSIN', 'ALBUM PAPIER NOIR 30F 120g &quot;TECHNO&quot;', 450.00, 3, 4, 'https://technostationery.com/media/catalog/product/cache/0357bde545ff49ff327f5b2f4e2532a3/a/l/album-papier-noir-30f-120g-techno-0.jpg', 14, 'available', '2025-06-10 17:13:27'),
-(11, 'PAPIER ONDULE', 'PAPIER ONDULE PAILETTE A3 PAQUET 10 COULEURS &quot;TECHNO&quot; REF: 5189', 185.00, 3, 4, 'https://technostationery.com/media/catalog/product/cache/0357bde545ff49ff327f5b2f4e2532a3/p/a/papier-ondule-pailette-a3-paquet-10-couleurs-techno-ref-5189-0.jpg', 11, 'available', '2025-06-10 17:14:51');
+(11, 'PAPIER ONDULE', 'PAPIER ONDULE PAILETTE A3 PAQUET 10 COULEURS &quot;TECHNO&quot; REF: 5189', 185.00, 3, 4, 'https://technostationery.com/media/catalog/product/cache/0357bde545ff49ff327f5b2f4e2532a3/p/a/papier-ondule-pailette-a3-paquet-10-couleurs-techno-ref-5189-0.jpg', 11, 'available', '2025-06-10 17:14:51'),
+(13, 'CAHIER TRAVAUX PRATIQUE 96p', 'Le cahier de travaux pratiques fait alterner des pages séyès à grands carreaux pour écrire les cours ou les leçons, et des pages blanches unies, de type papier canson, destinées aux exercices d’application et autres dessins illustratifs', 180.00, 6, 4, 'https://elhillal.com/wp-content/uploads/2020/08/1-7.jpg', 24, 'available', '2025-06-12 12:57:06'),
+(14, 'CAHIER DE CLASSE', 'Le Cahier de classe pour les préparatoires et primaires de la première à la cinquième année\r\nsuit le programme scolaire', 380.00, 6, 4, 'https://elhillal.com/wp-content/uploads/2022/12/Classe-0.png', 20, 'available', '2025-06-12 12:58:14'),
+(15, 'CAHIER PIQUE 96p', 'La piqûre à cheval est la méthode de reliure la plus simple.', 50.00, 6, 4, 'https://elhillal.com/wp-content/uploads/2020/08/4.png', 28, 'available', '2025-06-12 12:59:55'),
+(16, 'CAHIER PIQUE 48p', 'La piqûre à cheval est la méthode de reliure la plus simple', 40.00, 6, 4, 'https://elhillal.com/wp-content/uploads/2020/08/9.png', 48, 'available', '2025-06-12 13:01:34'),
+(17, 'CAHIER PIQUE 64p', 'La piqûre à cheval est la méthode de reliure la plus simple', 50.00, 6, 4, 'https://elhillal.com/wp-content/uploads/2020/08/10.png', 26, 'available', '2025-06-12 13:02:49'),
+(18, 'RAM PAPIER A4 MULTICOPY 80g', 'It is Multifunction paper', 650.00, 3, 4, 'https://elhillal.com/wp-content/uploads/2020/08/2-1.jpg', 15, 'available', '2025-06-12 13:04:00'),
+(19, 'PAPIER RAM Premium+ A4 80g', 'Le Papier ramette qui sublime vos impressions couleurs!\r\n\r\nHaute résolution Blancheur accrue pour un meilleur rendu des couleurs', 700.00, 3, 4, 'https://elhillal.com/wp-content/uploads/2020/08/Premium.jpg', 16, 'available', '2025-06-12 13:05:24'),
+(20, 'RAM PAPIER A4 a-Plus DoubleCOPY 90g', 'A high-end paper from color laser paper copiers, Inkjet printers', 600.00, 3, 4, 'https://elhillal.com/wp-content/uploads/2020/08/2-2.jpg', 16, 'available', '2025-06-12 13:07:31'),
+(21, 'PATE A MODELER 8 COULEURS GLITTER SOUS BLISTER LICENCE PAW PATROL FILLE', 'PATE A MODELER 8 COULEURS GLITTER SOUS BLISTER LICENCE PAW PATROL FILLE', 250.00, 1, 4, 'https://technostationery.com/media/catalog/product/cache/e6148d99ae2c39ce16283ee794dfce11/p/a/pate_a_modeler_8_couleurs_glitter_sous_blister_licence_paw_patrol_fille_techno_ref_7217.jpg', 26, 'available', '2025-06-12 13:09:34'),
+(22, 'CRAYONS DE COULEUR', 'CRAYONS DE COULEUR WOW FLUO BOITE DE 12 COULEURS', 430.00, 1, 4, 'https://technostationery.com/media/catalog/product/cache/0357bde545ff49ff327f5b2f4e2532a3/c/r/crayons-de-couleur-wow-fluo-boite-de-12-couleurs-techno-ref-6567.jpg', 43, 'available', '2025-06-12 13:11:34'),
+(23, 'stylo unomax gold', 'STYLUS GOLD\r\nMetal Ball Point Pens\r\nTip Size 0.7 mm\r\nInk Colours\r\nblue', 70.00, 1, 4, 'https://www.unomaxpens.com/public/images/products/STYLUS%20GOLD.png', 44, 'available', '2025-06-12 13:14:46'),
+(24, 'كتاب التوحيد للكاتب شيخ الإسلام محمد بن عبدالوهاب باللغة الإنجليزية', 'لمؤلف\r\nمحمد بن عبد الوهاب\r\n\r\n الشيخ محمد بن عبد الوهاب، الفقيه والداعية الإسلامي البارز الذي عاش في القرن الثامن عشر\r\n\r\nحالة الكتاب\r\nجديد', 1500.00, 2, 4, 'https://books.ay7aaga.com/wp-content/uploads/2024/09/%D9%A2%D9%A0%D9%A2%D9%A4%D9%A0%D9%A9%D9%A1%D9%A2_%D9%A1%D9%A2%D9%A5%D9%A1%D9%A2%D9%A2-scaled.jpg.webp', 1, 'available', '2025-06-12 14:09:39');
 
 -- --------------------------------------------------------
 
@@ -194,8 +199,7 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id`, `username`, `email`, `password`, `role`, `created_at`) VALUES
-(4, 'oussama', 'oussama.mer@univ-annab.dz', '$2y$10$G33I5pyfa5zxRehuUxP5FuiEhpEzu/UE/bF6IxfAfWvrJ8MbYozwu', 'bibliothecaire', '2025-06-10 13:00:02'),
-(5, 'yakin', 'yakin@gmail.com', '$2y$10$6IxcA3KK0xP3UxqdGm9oS.I4m5lEb4/6jkEfKCnRTOCADeVrK68L.', 'acheteur', '2025-06-10 13:11:16');
+(4, 'oussama', 'oussama.mer@univ-annab.dz', '$2y$10$G33I5pyfa5zxRehuUxP5FuiEhpEzu/UE/bF6IxfAfWvrJ8MbYozwu', 'bibliothecaire', '2025-06-10 13:00:02');
 
 -- --------------------------------------------------------
 
@@ -350,19 +354,19 @@ ALTER TABLE `categories`
 -- AUTO_INCREMENT pour la table `orders`
 --
 ALTER TABLE `orders`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
 
 --
 -- AUTO_INCREMENT pour la table `order_items`
 --
 ALTER TABLE `order_items`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 
 --
 -- AUTO_INCREMENT pour la table `products`
 --
 ALTER TABLE `products`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=25;
 
 --
 -- AUTO_INCREMENT pour la table `reviews`
@@ -374,7 +378,7 @@ ALTER TABLE `reviews`
 -- AUTO_INCREMENT pour la table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
 -- AUTO_INCREMENT pour la table `wilayas`
